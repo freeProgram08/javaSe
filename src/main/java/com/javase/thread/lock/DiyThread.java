@@ -32,7 +32,9 @@ public class DiyThread extends Thread {
         three.start();
         four.start();
         five.start();
+        //之前的线程已经跑了一部分
         try {
+            /*同步所有子线程，保证子线程所有方法执行完毕*/
             one.join();
             two.join();
             three.join();
@@ -41,6 +43,7 @@ public class DiyThread extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        /*同步完，输出的结果才是最终结果*/
         System.out.println(PublicResource.value);
     }
 }
